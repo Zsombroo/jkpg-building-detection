@@ -24,8 +24,8 @@ def slice_image(
     
 
 if __name__=='__main__':
-    SOURCE_PATH = './ortofoto'
-    DESTINATION_PATH = './sliced_raw'
+    SOURCE_PATH = '../ortofoto'
+    DESTINATION_PATH = '../sliced_raw'
     SLICE_SIZE = (500, 500)
 
     pattern = re.compile('.*\.tif$')
