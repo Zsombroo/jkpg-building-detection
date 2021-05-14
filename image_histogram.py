@@ -9,6 +9,7 @@ if __name__=='__main__':
 
     for image_file in sorted(os.listdir(SOURCE_PATH))[869:]:
         img_color = cv2.imread('{}/{}'.format(SOURCE_PATH, image_file))
+        img_gray = cv2.imread('{}/{}'.format(SOURCE_PATH, image_file), 0)
 
         plt.figure(figsize=(12,4));
         plt.subplot(1,2,1);
@@ -22,6 +23,12 @@ if __name__=='__main__':
             plt.subplot(1,2,2);
             plt.plot(hist, color = col)
             plt.xlim([0,256])
+        
+        # Calculate and plot histogram for the gray scale image
+        hist_gray = cv2.calcHist([img_gray], [0], None, [256], [0,256])
+        plt.subplot(1,2,2);
+        plt.plot(hist_gray, color = 'k')
+        plt.xlim([0,256])
 
         plt.tight_layout(pad=3.0)
         plt.savefig('{}/{}'.format(DESTINATION_PATH, image_file), format='png')
