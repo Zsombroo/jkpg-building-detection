@@ -30,7 +30,7 @@ if __name__=='__main__':
     slicer_condig = config['IMAGE_SLICER']
 
     source_path = slicer_condig['source_path']
-    destination_path = slicer_condig['destination_path_without_size']
+    destination_path = slicer_condig['destination_path_without_param']
     slice_size = int(slicer_condig['size'])
     destination_path = '_'.join((destination_path, str(slice_size)))
 
