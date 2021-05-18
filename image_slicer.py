@@ -3,6 +3,7 @@ import cv2
 import numpy as np
 import os
 import re
+from tqdm import tqdm
 
 
 def slice_image(
@@ -24,7 +25,7 @@ def slice_image(
     return out
     
 
-if __name__=='__main__':
+if __name__ == '__main__':
     config = configparser.ConfigParser()
     config.read('preprocessing.config')
     slicer_condig = config['IMAGE_SLICER']
@@ -38,7 +39,7 @@ if __name__=='__main__':
         os.mkdir(destination_path)
 
     pattern = re.compile('.*\.tif$')
-    for file in sorted(os.listdir(source_path)):
+    for file in tqdm(sorted(os.listdir(source_path))):
         if pattern.match(file):
             slices = slice_image(cv2.imread('{}/{}'.format(source_path, file)),
                                  file[:-4],

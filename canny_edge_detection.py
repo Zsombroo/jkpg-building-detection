@@ -1,9 +1,10 @@
 import configparser
 import cv2
 import os
+from tqdm import tqdm
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
     config = configparser.ConfigParser()
     config.read('preprocessing.config')
     slicer_condig = config['CANNY_EDGE_DETECTION']
@@ -15,10 +16,11 @@ if __name__=='__main__':
     destination_path = '_'.join((destination_path,
                                  str(low_threshold),
                                  str(high_threshold)))
+
     if not os.path.isdir(destination_path):
         os.mkdir(destination_path)
-        
-    for image_file in sorted(os.listdir(source_path)):
+
+    for image_file in tqdm(sorted(os.listdir(source_path))):
         img = cv2.imread('{}/{}'.format(source_path, image_file),
                          cv2.IMREAD_GRAYSCALE)
         edges = cv2.Canny(img, low_threshold, high_threshold)

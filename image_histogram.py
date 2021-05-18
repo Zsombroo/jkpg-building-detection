@@ -1,15 +1,26 @@
+import configparser
 import cv2
 import os
 import matplotlib.pyplot as plt
+from tqdm import tqdm
+import warnings
+warnings.filterwarnings("ignore")
 
 
-if __name__=='__main__':
-    SOURCE_PATH = '../sliced_raw'
-    DESTINATION_PATH = '../hist'
+if __name__ == '__main__':
+    config = configparser.ConfigParser()
+    config.read('preprocessing.config')
+    slicer_condig = config['IMAGE_HISTOGRAM']
 
-    for image_file in sorted(os.listdir(SOURCE_PATH))[869:]:
-        img_color = cv2.imread('{}/{}'.format(SOURCE_PATH, image_file))
-        img_gray = cv2.imread('{}/{}'.format(SOURCE_PATH, image_file), 0)
+    source_path = slicer_condig['source_path']
+    destination_path = slicer_condig['destination_path_without_param']
+                                 
+    if not os.path.isdir(destination_path):
+        os.mkdir(destination_path)
+
+    for image_file in tqdm(sorted(os.listdir(source_path))):
+        img_color = cv2.imread('{}/{}'.format(source_path, image_file))
+        img_gray = cv2.imread('{}/{}'.format(source_path, image_file), 0)
 
         plt.figure(figsize=(12,4));
         plt.subplot(1,2,1);
@@ -31,4 +42,4 @@ if __name__=='__main__':
         plt.xlim([0,256])
 
         plt.tight_layout(pad=3.0)
-        plt.savefig('{}/{}'.format(DESTINATION_PATH, image_file), format='png')
+        plt.savefig('{}/{}'.format(destination_path, image_file), format='png')
