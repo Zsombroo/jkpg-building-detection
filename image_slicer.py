@@ -25,15 +25,17 @@ def slice_image(
 
 if __name__=='__main__':
     SOURCE_PATH = '../ortofoto'
-    DESTINATION_PATH = '../sliced_raw'
-    SLICE_SIZE = (500, 500)
 
     pattern = re.compile('.*\.tif$')
-    for file in sorted(os.listdir(SOURCE_PATH)):
-        if pattern.match(file):
-            slices = slice_image(cv2.imread('{}/{}'.format(SOURCE_PATH, file)),
-                                 file[:-4],
-                                 SLICE_SIZE)
-                                 
-            for k, v in slices.items():
-                cv2.imwrite('{}/{}.png'.format(DESTINATION_PATH, k), v)
+    for slice_one_side in [500, 640, 1024]:
+        DESTINATION_PATH = '../sliced_raw_{}_{}'.format(slice_one_side, slice_one_side)
+        SLICE_SIZE = (slice_one_side, slice_one_side)
+        
+        for file in sorted(os.listdir(SOURCE_PATH)):
+            if pattern.match(file):
+                slices = slice_image(cv2.imread('{}/{}'.format(SOURCE_PATH, file)),
+                                    file[:-4],
+                                    SLICE_SIZE)
+                                    
+                for k, v in slices.items():
+                    cv2.imwrite('{}/{}.png'.format(DESTINATION_PATH, k), v)
