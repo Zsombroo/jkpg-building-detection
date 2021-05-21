@@ -28,11 +28,11 @@ def slice_image(
 if __name__ == '__main__':
     config = configparser.ConfigParser()
     config.read('preprocessing.config')
-    slicer_condig = config['IMAGE_SLICER']
+    slicer_config = config['IMAGE_SLICER']
 
-    source_path = slicer_condig['source_path']
-    destination_path = slicer_condig['destination_path_without_param']
-    slice_size = int(slicer_condig['size'])
+    source_path = slicer_config['source_path']
+    destination_path = slicer_config['destination_path_without_param']
+    slice_size = int(slicer_config['size'])
     destination_path = '_'.join((destination_path, str(slice_size)))
 
     if not os.path.isdir(destination_path):
