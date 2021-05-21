@@ -89,9 +89,13 @@ def xml_to_csv(path):
     return xml_df
 
 
-def class_text_to_int(row_label): 
+def class_text_to_int(row_label):
     if row_label == 'building':
         return 1
+    elif row_label == 'small_building':
+        return 2
+    elif row_label == 'car':
+        return 3
     else:
         return None
 
