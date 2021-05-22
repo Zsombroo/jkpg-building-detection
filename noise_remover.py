@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import os
-import tqdm
+from tqdm import tqdm
 import configparser
 
 
@@ -24,10 +24,10 @@ if __name__ == '__main__':
         os.mkdir(destination_path)
 
     for image_file in tqdm(sorted(os.listdir(source_path))):
-        mask = cv2.imread(source_path, cv2.IMREAD_GRAYSCALE)
+        mask = cv2.imread('{}/{}'.format(source_path, image_file), cv2.IMREAD_GRAYSCALE)
         mask = cv2.dilate(mask, kernel_3x3, iterations=4)
         mask = cv2.erode(mask, kernel_3x3, iterations=10)
         mask = (255-mask)
-        img = cv2.imread(source_path, cv2.IMREAD_GRAYSCALE)
+        img = cv2.imread('{}/{}'.format(source_path, image_file), cv2.IMREAD_GRAYSCALE)
         img = cv2.bitwise_and(img, mask)
-        cv2.imwrite(destination_path, img)
+        cv2.imwrite('{}/{}'.format(destination_path, image_file), img)
