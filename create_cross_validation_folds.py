@@ -13,7 +13,7 @@ def copy_files(PATH_TO_DATA):
     list_of_files = [file.split('.')[0] for file in os.listdir(PATH_TO_DATA) if pattern.match(file)]
 
     folds = cross_validation_set_generator.get_cross_validation_sets(list_of_files, 5)
-
+    
     for idx, fold in enumerate(folds):
         if not os.path.exists(PATH_TO_DATA+'/fold_'+str(idx+1)):
             os.makedirs(PATH_TO_DATA+'/fold_'+str(idx+1)+'/train')
@@ -31,5 +31,5 @@ def copy_files(PATH_TO_DATA):
             shutil.copy(PATH_TO_DATA+'/'+file_test+'.xml', PATH_TO_DATA+'/fold_'+str(idx+1)+'/test')
 
 if __name__ == '__main__':
-    PATH_TO_DATA = '../serialize_raw_1024'
+    PATH_TO_DATA = '../serialize_raw_640_3'
     copy_files(PATH_TO_DATA)
