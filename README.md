@@ -1,5 +1,4 @@
-# jkpg-building-detection
-# Object detection in aerial footage
+# jkpg-building-detection / Object detection in aerial footage
 ## Installation of the environment
 Inspiration: [Gilbert Tanner github](https://github.com/TannerGilbert/Tensorflow-Object-Detection-API-Train-Model)
 Inspiration: [Tensorflow 2 Object detection, official github](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2.md)
