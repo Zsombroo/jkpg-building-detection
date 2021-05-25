@@ -25,8 +25,8 @@ if __name__ == '__main__':
 
     for image_file in tqdm(sorted(os.listdir(source_path))):
         mask = cv2.imread('{}/{}'.format(source_path, image_file), cv2.IMREAD_GRAYSCALE)
-        mask = cv2.dilate(mask, kernel_3x3, iterations=4)
-        mask = cv2.erode(mask, kernel_3x3, iterations=10)
+        mask = cv2.dilate(mask, kernel_3x3, iterations=dilate_iterations)
+        mask = cv2.erode(mask, kernel_3x3, iterations=erode_iterations)
         mask = (255-mask)
         img = cv2.imread('{}/{}'.format(source_path, image_file), cv2.IMREAD_GRAYSCALE)
         img = cv2.bitwise_and(img, mask)
