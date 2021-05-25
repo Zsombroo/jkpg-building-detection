@@ -14,12 +14,14 @@ Sources and inspiration when setting up the environment:
 
 ### Code changes needed
 Due to the hardware we are running on, the following code i necessary to use the Tensorflow Object Detection API:
+´´´
 from tensorflow.compat.v1 import ConfigProto
 from tensorflow.compat.v1 import InteractiveSession
 
 config = ConfigProto()
 config.gpu_options.allow_growth = True
 session = InteractiveSession(config=config)
+´´´
 
 ## Process of training
  * Crop images to size 640x640
