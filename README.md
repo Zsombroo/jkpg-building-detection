@@ -5,15 +5,14 @@ Sources and inspiration when setting up the environment:
 [Tensorflow 2 Object detection, official github](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2.md)
 
 ### After following the official Tensorflow Object Detection API installation instructions, these changes were made:
- * Uninstall of duplicate (different versions) of tensorflow (TF). TF 2.4.1 is used.
- * When creating the docker container, a volume is mounted and ports for ssh, tensorboard and juypter notebook is added.
- * pip install opencv-contrib-python-headless
- * pip install scipy
+ * Inside the docker container, uninstall of duplicates (different versions) of tensorflow (TF) installations. TF 2.4.1 is used.
+ * When creating the docker container, a volume is mounted and ports for ssh, tensorboard and juypter notebook is added to the configuration.
+ * Inside the docker container: pip install opencv-contrib-python-headless
+ * Inside the docker container: pip install scipy
  * Other packages and libaries that is installed but not necessary is openssh-server, nano, net-tools
  
-
 ### Code changes needed
-Due to the hardware we are running on, the following code i necessary to use the Tensorflow Object Detection API:
+Due to the hardware we are running on, the following code is necessary in the scripts that will use the GPU with Tensorflow Object Detection API:
 ```
 from tensorflow.compat.v1 import ConfigProto
 from tensorflow.compat.v1 import InteractiveSession
@@ -21,6 +20,15 @@ from tensorflow.compat.v1 import InteractiveSession
 config = ConfigProto()
 config.gpu_options.allow_growth = True
 session = InteractiveSession(config=config)
+```
+
+### Script to create tf-records
+Before training of the model, images and ground truth data (xml) is serialized through protobuf. Two scripts from [Gilbert Tanner github](https://github.com/TannerGilbert/Tensorflow-Object-Detection-API-Train-Model) is refactored and merged to make the process more easy. The merged script is found in this repository (create_tfrecords.py).
+
+### Tensorboard
+Tensorboard is used to visualize the result from training and evaluating the models created.
+```
+tensorboard --logdir=<folder where log data is stored>
 ```
 
 ## Process of training
