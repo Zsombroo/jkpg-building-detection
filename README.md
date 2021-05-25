@@ -1,7 +1,7 @@
 # jkpg-building-detection / Object detection in aerial footage
 ## Installation of the environment
 Sources and inspiration when setting up the environment:
-[Gilbert Tanner github](https://github.com/TannerGilbert/Tensorflow-Object-Detection-API-Train-Model)
+[Gilbert Tanner github](https://github.com/TannerGilbert/Tensorflow-Object-Detection-API-Train-Model), 
 [Tensorflow 2 Object detection, official github](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2.md)
 
 ### After following the official Tensorflow Object Detection API installation instructions, these changes were made:
@@ -34,12 +34,13 @@ tensorboard --logdir=<folder where log data is stored>
 ## Process of training
  * Crop images to size 640x640
  * Choose images to label. To help the model in not misclassifying we are introducing two "extra" categories. In total the following categories are labelled: building, small_building, car.
- * Apply filter to images (canny edge + denoising filter)
- * Create k folds with 80% training set and 20% test set
- * Serialize images, bounding box labels and labelmap per fold and train/test set
- * Run training of the model on the train set
- * Evaluate the model on the test set
+ * Normalize the data (normalize_image.py)
+ * Apply filter to images (canny edge + denoising filter) (canny_edge_detection.py, noise_remover.py)
+ * Create k folds with 80% training set and 20% test set (create_cross_validation_folds.py)
+ * Serialize images, bounding box labels and labelmap per fold and train/test set (create_tfrecords.py)
+ * Run training of the model on the train set (TF Object Detection API: model_main_tf2.py)
+ * Evaluate the model on the test set (TF Object Detection API: model_main_tf2.py with --checkpoint_dir <folder with checkpoints> set)
 
 ## Inference on novel data
- * Export the model into saved model format
- * Run inference on image(s)
+ * Export the model into saved model format (TF Object Detection API: exporter_main_v2.py)
+ * Run inference on image(s) (inference_on_images.py)
