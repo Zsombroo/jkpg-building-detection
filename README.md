@@ -43,4 +43,4 @@ tensorboard --logdir=<folder where log data is stored>
 
 ## Inference on novel data
  * Export the model into saved model format (TF Object Detection API: exporter_main_v2.py --trained_checkpoint_dir \<folder name\> --pipeline_config_path \<config file\> --output_directory \<folder name\>)
- * Run inference on image(s) (inference_on_images.py)
+ * Run inference on image(s) (inference_on_images.py --input_folder \<folder name\> --input_model \<path to model\>)
