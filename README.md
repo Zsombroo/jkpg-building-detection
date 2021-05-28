@@ -37,7 +37,7 @@ tensorboard --logdir=<folder where log data is stored>
  * Normalize the data (normalize_image.py)
  * Apply filter to images (canny edge + denoising filter) (canny_edge_detection.py, noise_remover.py)
  * Create k folds with 80% training set and 20% test set (create_cross_validation_folds.py)
- * Serialize images, bounding box labels and labelmap per fold and train/test set (create_tfrecords.py --input_folder <folder name> --output_folder <folder name> --output_filename <filename.record> --classnames <classname code from .config-file>)
+ * Serialize images, bounding box labels and labelmap per fold and train/test set (create_tfrecords.py --input_folder \<folder name\> --output_folder \<folder name\> --output_filename \<filename.record\> --classnames \<classname code from .config-file\>)
  * Run training of the model on the train set (TF Object Detection API: model_main_tf2.py --pipeline_config_path <config file> --model_dir <folder name> --checkpoint_dir <folder name> --sample_1_of_n_eval_examples=1)
  * Evaluate the model on the test set (TF Object Detection API: model_main_tf2.py --pipeline_config_path <config file> --model_dir <folder name> --checkpoint_dir <folder name> --sample_1_of_n_eval_examples=1 --checkpoint_dir <folder with checkpoints> )
 
