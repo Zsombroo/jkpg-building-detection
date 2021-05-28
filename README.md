@@ -23,7 +23,7 @@ session = InteractiveSession(config=config)
 ```
 
 ### Script to create tf-records
-Before training of the model, images and ground truth data (xml) is serialized through protobuf. Two scripts from [Gilbert Tanner github](https://github.com/TannerGilbert/Tensorflow-Object-Detection-API-Train-Model) is refactored and merged to make the process more easy. The merged script is found in this repository (create_tfrecords.py).
+Before training of the model, images and ground truth data (xml) is serialized through protobuf. Two scripts from [Gilbert Tanner github](https://github.com/TannerGilbert/Tensorflow-Object-Detection-API-Train-Model) is refactored and merged to make the process more easy. The merged script is found in our repository (create_tfrecords.py).
 
 ### Tensorboard
 Tensorboard is used to visualize the result from training and evaluating the models created.
@@ -33,7 +33,7 @@ tensorboard --logdir=<folder where log data is stored>
 
 ## Process of training
  * Crop images to size 640x640
- * Choose images to label.
+ * Choose images to label and label them.
  * Normalize the data (normalize_image.py)
  * Apply filter to images (canny edge + denoising filter) (canny_edge_detection.py, noise_remover.py)
  * Create k folds with 80% training set and 20% test set (create_cross_validation_folds.py)
