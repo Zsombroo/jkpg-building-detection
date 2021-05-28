@@ -1,4 +1,0 @@
-python3 normalize_image.py
-python3 canny_edge_detection.py
-python3 noise_remover.py
-python3 combine_raw_with_edges.py
