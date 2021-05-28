@@ -33,7 +33,7 @@ tensorboard --logdir=<folder where log data is stored>
 
 ## Process of training
  * Crop images to size 640x640
- * Choose images to label. To help the model in not misclassifying we are introducing two "extra" categories. In total the following categories are labelled: building, small_building, car.
+ * Choose images to label.
  * Normalize the data (normalize_image.py)
  * Apply filter to images (canny edge + denoising filter) (canny_edge_detection.py, noise_remover.py)
  * Create k folds with 80% training set and 20% test set (create_cross_validation_folds.py)
